@@ -1,0 +1,129 @@
+# default properties to be inherited or overridden by other profile specific properties
+spring:
+  profiles.active: local
+  application:
+    name: finbank-trading
+  kafka:
+    consumer:
+      bootstrap-servers: kafka:9093
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: kafka:9093
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  ## PostgreSQL
+  datasource:
+    url: jdbc:postgresql://database:5432/rainbow_database
+    username: unicorn_user
+    password: magical_password
+    ## default connection pool
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+## MULTIPART (MultipartProperties)
+# Enable multipart uploads
+spring.servlet.multipart.enabled: true
+# Threshold after which files are written to disk.
+spring.servlet.multipart.file-size-threshold: 2KB
+# Max file size.
+spring.servlet.multipart.max-file-size: 200MB
+# Max Request Size
+spring.servlet.multipart.max-request-size: 215MB
+
+## File Storage Properties
+# All files uploaded through the REST API will be stored in this directory
+trading.uploadDirectory: data/uploads/
+# Generated reports will be stored here
+trading.downloadDirectory: data/downloads/
+trading.downloadFleName: Output.csv
+
+## Futures Transactions Input file Field mappings
+trading.metadata:
+  recordCode:
+    ref: 1
+    fieldName: RECORD CODE
+    description: "315"
+    length: 3
+    beginIndex: 1
+    endIndex: 3
+  clientType:
+    ref: 2
+    fieldName: CLIENT TYPE
+    length: 4
+    beginIndex: 4
+    endIndex: 7
+  clientNumber:
+    ref: 3
+    fieldName: CLIENT NUMBER
+    description: (including O decimals)
+    length: 4
+    beginIndex: 8
+    endIndex: 11
+  accountNumber:
+    ref: 4
+    fieldName: ACCOUNT NUMBER
+    description: (including O decimals)
+    length: 4
+    beginIndex: 12
+    endIndex: 15
+  subAccountNumber:
+    ref: 5
+    fieldName: SUBACCOUNT NUMBER
+    description: (including O decimals)
+    length: 4
+    beginIndex: 16
+    endIndex: 19
+  productGroupCode:
+    ref: 7
+    fieldName: PRODUCT GROUP CODE
+    length: 2
+    beginIndex: 26
+    endIndex: 27
+  exchangeCode:
+    ref: 8
+    fieldName: EXCHANGE CODE
+    length: 4
+    beginIndex: 28
+    endIndex: 31
+  symbol:
+    ref: 9
+    fieldName: SYMBOL
+    length: 6
+    beginIndex: 32
+    endIndex: 37
+  expirationDate:
+    ref: 11
+    fieldName: EXPIRATION DATE
+    description: (in format CCYYMMDD)
+    length: 8
+    beginIndex: 38
+    endIndex: 45
+  quantityLong:
+    ref: 16
+    fieldName: QUANTITY LONG
+    description: (including O decimals)
+    length: 10
+    beginIndex: 53
+    endIndex: 62
+  quantityShort:
+    ref: 16
+    fieldName: QUANTITY SHORT
+    description: (including O decimals)
+    length: 10
+    beginIndex: 64
+    endIndex: 73
+  transactionDate:
+    ref: 34
+    fieldName: TRANSACTION DATE
+    description: (in format CCYYMMDD)
+    length: 8
+    beginIndex: 122
+    endIndex: 129
