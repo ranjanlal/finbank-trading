@@ -61,13 +61,15 @@ The application can be run in 2 modes:
 
 The application exposes the following endpoints:
 
-| HTTP Method  | Endpoint                           | Description                       |
-|:-------------|:-----------------------------------|:----------------------------------| 
-| GET          | /api/                              | Welcome message                   |
-| POST         | /api/transactions                  | Upload futures transactions file  |
-| GET          | /api/report/all                    | Generate summary report for all futures transactions by all clients  |
-| GET          | /api/report/{clientNumber}         | Generate report (in JSON format) for all futures transactions done by a given client on a given date. Optional : `transaction date` as query param. If not provided returns all transactions done by a given client |
-| GET          | /api/report/csv/{clientNumber}     | Generate report (in CSV format) for all futures transactions done by a given client on a given date. Optional : `transaction date` as query param. If not provided returns all transactions done by a given client |
+| HTTP Method  | Endpoint                                                             | Description                       |
+|:-------------|:---------------------------------------------------------------------|:----------------------------------| 
+| GET          | /api/                                                                | Welcome message                   |
+| POST         | /api/transactions                                                    | Upload futures transactions file  |
+| GET          | /api/report/all                                                      | Generate summary report for all futures transactions by all clients  |
+| GET          | /api/report/{clientNumber}                                           | Generate report (in JSON format) for all transactions done by a given client |
+| GET          | /api/report/{clientNumber}?transactionDate={date-in-YYYY-MM-DD}      | Generate report (in JSON format) for all futures transactions done by a given client on a given date |
+| GET          | /api/report/csv/{clientNumber}                                       | Generate report (in CSV format) for all transactions done by a given client |
+| GET          | /api/report/csv/{clientNumber}?transactionDate={date-in-YYYY-MM-DD}  | Generate report (in CSV format) for all futures transactions done by a given client on a given date |
 
 
 The application logs are generated at:
